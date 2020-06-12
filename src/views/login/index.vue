@@ -6,10 +6,10 @@
             <div class="avatar"><el-avatar style="width:200px;height:200px" src="http://5b0988e595225.cdn.sohucs.com/images/20171021/a9432e8e3ad64d3a8e634001578de1d9.jpeg"></el-avatar></div>
             <div class="content">
             <el-form ref="loginRef" :model="userinfo" :rules="loginRules" label-width="0px">
-                <el-form-item  prop="usename">
+                <el-form-item  prop="phone">
             <el-input
                 placeholder="用户名"
-                v-model="userinfo.usename"
+                v-model="userinfo.phone"
                 prefix-icon="el-icon-user-solid"
                 clearable>
            </el-input>
@@ -24,7 +24,7 @@
            </el-input>
                  </el-form-item>
                   <el-form-item  class="bt">
-                      <el-button type="primary" @click="reset('loginRef')">确认</el-button>
+                      <el-button type="primary" @click="login('loginRef')">确认</el-button>
                   </el-form-item>
             </el-form>
             </div>
@@ -37,8 +37,9 @@ export default {
   data () {
     return {
       userinfo: {
-        usename: 'admin',
-        password: '123456'
+        phone: '10002',
+        password: '123456',
+        tenant: '8888'
       },
       loginRules: {
         usename: [{ required: true, message: '登录名称', trigger: 'blur' },
@@ -51,6 +52,15 @@ export default {
   methods: {
     reset (refName) {
       this.$refs[refName].resetFields()
+    },
+    login (refName) {
+      this.$refs[refName].validate(valid => {
+        if (valid) {
+          this.$store.dispatch('user/login', this.userinfo).then(res => {
+            this.$router.push({ path: '/dashboard' })
+          })
+        }
+      })
     }
   }
 

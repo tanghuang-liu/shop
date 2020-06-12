@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './styles/index.less'
+import './permission' // permission control
 Vue.config.productionTip = false
 
 new Vue({

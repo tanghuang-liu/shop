@@ -6,11 +6,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/dashboard'
   },
   {
     path: '/login',
-    component: () => import('../components/Login.vue')
+    component: () => import('@/views/login/index')
+  }, {
+    path: '/dashboard',
+    component: () => import('@/views/dashboard/index')
+  }, {
+    path: '/404',
+    component: () => import('@/views/404/index'),
+    hidden: true
   }
 ]
 
