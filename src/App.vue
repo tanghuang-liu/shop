@@ -17,5 +17,6 @@ export default {
 <style>
 #app{
   overflow-x:auto;
+  /* filter: grayscale(100%);  整体加一个灰色滤镜*/
 }
 </style>
